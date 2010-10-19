@@ -45,5 +45,10 @@ namespace Machine.Specifications.Mvc.Example
             
             return new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Person", action = "List" }));
         }
+
+        public ActionResult FeedbackPopup()
+        {
+            return PartialView();
+        }
     }
 }

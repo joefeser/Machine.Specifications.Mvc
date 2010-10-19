@@ -11,6 +11,11 @@ namespace Machine.Specifications.Mvc
             actionResult.ShouldBeOfType<ViewResult>();
             return new ViewResultAnd(actionResult as ViewResult);
         }
+               
+        public static void ShouldBeAPartialView(this ActionResult actionResult)
+        {
+            actionResult.ShouldBeOfType<PartialViewResult>();
+        }
 
         public static RedirectToRouteResultAnd ShouldBeARedirectToRoute(this ActionResult actionResult)
         {
