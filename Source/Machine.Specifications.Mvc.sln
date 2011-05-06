@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Machine.Specifications.Mvc", "Machine.Specifications.MVC\Machine.Specifications.Mvc.csproj", "{E6626A76-01EA-4C2C-AAF8-F6BA2C4F86F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Machine.Specifications.Mvc.Specs", "Machine.Specifications.MVC.Specs\Machine.Specifications.Mvc.Specs.csproj", "{01DF6FDB-B19F-462D-852A-BBCCC28FDEBA}"
