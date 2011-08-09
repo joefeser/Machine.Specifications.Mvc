@@ -15,12 +15,13 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
-[assembly: AssemblyVersion("0.1.4")]
-[assembly: AssemblyFileVersion("0.1.4.0")]
+[assembly: AssemblyVersion("1.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: AssemblyCopyright("Copyright (c) James Broome 2011")]
 [assembly: AssemblyConfiguration("Debug")]
 [assembly: AssemblyCompany("James Broome")]
-[assembly: AssemblyProduct("Machine.Specifications.AutoMocking attempts to reduce noise in MSpec tests when c" +
-    "reating mock objects, dependencies and the subject under test. (Debug DB: 0)")]
+[assembly: AssemblyProduct("Machine.Specifications.Mvc is a set of extensions for testing ASP.Net MVC specifi" +
+    "c types. \r\n\r\nIt aims to ease the testing of ActionResult objects returned from M" +
+    "VC Controllers by providing an MSpec BDD syntax over these types. (Debug DB: 0)")]
 
 

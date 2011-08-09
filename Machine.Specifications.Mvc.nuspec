@@ -1,25 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Machine.Specifications.AutoMocking</id>
-    <title>Machine.Specifications.AutoMocking</title>
-    <version>0.1.4.0</version>
+    <id>Machine.Specifications.Mvc</id>
+    <title>Machine.Specifications.Mvc</title>
+    <version>1.0.0.0</version>
     <authors>James Broome, Joe Feser</authors>
     <owners>James Broome</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Machine.Specifications.AutoMocking attempts to reduce noise in MSpec tests when creating mock objects, dependencies and the subject under test.</description>
-    <summary>Machine.Specifications.AutoMocking (Debug)</summary>
-    <projectUrl>https://github.com/joefeser/Machine.Specifications.AutoMocking</projectUrl>
+    <description>Machine.Specifications.Mvc is a set of extensions for testing ASP.Net MVC specific types. 
+
+It aims to ease the testing of ActionResult objects returned from MVC Controllers by providing an MSpec BDD syntax over these types.</description>
+    <summary>Machine.Specifications.Mvc (Debug)</summary>
+    <projectUrl>https://github.com/joefeser/Machine.Specifications.Mvc</projectUrl>
     <dependencies>
       <dependency id="Machine.Specifications" version="0.4.23.0" />
-      <dependency id="RhinoMocks" version="3.6" />
-      <dependency id="Moq" version="4.0.10827" />
-      <dependency id="NUnit" version="2.5.10.11092" />
     </dependencies>
     <tags>MSpec, test, unit, testing, context, specification, BDD, TDD</tags>
   </metadata>
   <files>
-    <file src="BuildOutput\bin\Machine.Specifications.AutoMocking.dll" target="lib" />
-    <file src="BuildOutput\bin\NUnit.Specifications.AutoMocking.dll" target="lib" />
+    <file src="BuildOutput\bin\Machine.Specifications.Mvc.dll" target="lib" />
   </files>
 </package>

@@ -5,7 +5,7 @@
 
   <!-- Version Information -->
   <PropertyGroup>
-    <AppVersion>0.1.4</AppVersion>
+    <AppVersion>1.0.0</AppVersion>
     <SchemaVersion>0</SchemaVersion>
   </PropertyGroup>
 
@@ -20,32 +20,34 @@
   <!-- Project name and description -->
   <PropertyGroup>
     <CompanyName>James Broome</CompanyName>
-    <ProductName>Machine.Specifications.AutoMocking</ProductName>
-    <ProductDescription>Machine.Specifications.AutoMocking attempts to reduce noise in MSpec tests when creating mock objects, dependencies and the subject under test.</ProductDescription>
+    <ProductName>Machine.Specifications.Mvc</ProductName>
+    <ProductDescription>Machine.Specifications.Mvc is a set of extensions for testing ASP.Net MVC specific types. 
+
+It aims to ease the testing of ActionResult objects returned from MVC Controllers by providing an MSpec BDD syntax over these types.</ProductDescription>
   </PropertyGroup>
 
   <!-- MSpec Tests -->
   <ItemGroup>
-    <MSpecTestItem Include="Machine.Specifications.AutoMocking.Specs"/>
+    <MSpecTestItem Include="Machine.Specifications.Mvc.Specs"/>
+    <MSpecTestItem Include="Machine.Specifications.Mvc.Example"/>
   </ItemGroup>
 
   <!-- NUnit Tests -->
   <ItemGroup>
-    <NUnitTestItem Include="NUnit.Specifications.AutoMocking.Example"/>
+    <!--<NUnitTestItem Include="Assembly"/>-->
   </ItemGroup>
 
   <!-- Binary files to publish -->
   <PropertyGroup>
     <BinInclude>
-      source\Machine.Specifications.AutoMocking\bin\$(Configuration)\*.*;
-      source\NUnit.Specifications.AutoMocking\bin\$(Configuration)\*.*
+      source\Machine.Specifications.Mvc\bin\$(Configuration)\*.*
     </BinInclude>
   </PropertyGroup>
 
   <!-- Nuget -->
   <PropertyGroup>
-    <NugetPackageSummary>Machine.Specifications.AutoMocking</NugetPackageSummary>
-    <NugetPackageId>Machine.Specifications.AutoMocking</NugetPackageId>
+    <NugetPackageSummary>Machine.Specifications.Mvc</NugetPackageSummary>
+    <NugetPackageId>Machine.Specifications.Mvc</NugetPackageId>
     <NugetPushUrl>http://packages.nuget.org/v1/</NugetPushUrl>
   </PropertyGroup>
 
