@@ -12,3 +12,5 @@ _ReSharper.*
 NDependOut
 
 .setup-done
+
+Source/packages/*
