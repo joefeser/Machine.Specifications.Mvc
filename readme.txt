@@ -81,4 +81,4 @@ Further ActionResult extensions
    e.g. result.ShouldRedirectToAction<HomeController>(x => x.Index());
 
 
-
+**You must run build.bat from the command line to put down the packages, otherwise the project will not build.**
