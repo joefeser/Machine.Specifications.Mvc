@@ -3,14 +3,14 @@
   <metadata>
     <id>Machine.Specifications.Mvc</id>
     <title>Machine.Specifications.Mvc</title>
-    <version>1.0.0.0</version>
+    <version>1.0.1.0</version>
     <authors>James Broome, Joe Feser</authors>
     <owners>James Broome</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Machine.Specifications.Mvc is a set of extensions for testing ASP.Net MVC specific types. 
 
-It aims to ease the testing of ActionResult objects returned from MVC Controllers by providing an MSpec BDD syntax over these types.</description>
-    <summary>Machine.Specifications.Mvc (Debug)</summary>
+It aims to ease the testing of ActionResult objects returned from MVC Controllers by providing an Machine.Specifications (MSpec) BDD syntax over these types.</description>
+    <summary>Machine.Specifications.Mvc is a set of extensions for testing ASP.Net MVC specific types using Machine.Specifications (MSpec). (Debug)</summary>
     <projectUrl>https://github.com/joefeser/Machine.Specifications.Mvc</projectUrl>
     <dependencies>
       <dependency id="Machine.Specifications" version="0.4.23.0" />

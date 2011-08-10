@@ -5,7 +5,7 @@
 
   <!-- Version Information -->
   <PropertyGroup>
-    <AppVersion>1.0.0</AppVersion>
+    <AppVersion>1.0.1</AppVersion>
     <SchemaVersion>0</SchemaVersion>
   </PropertyGroup>
 
@@ -46,7 +46,7 @@ It aims to ease the testing of ActionResult objects returned from MVC Controller
 
   <!-- Nuget -->
   <PropertyGroup>
-    <NugetPackageSummary>Machine.Specifications.Mvc</NugetPackageSummary>
+    <NugetPackageSummary>Machine.Specifications.Mvc is a set of extensions for testing ASP.Net MVC specific types using Machine.Specifications (MSpec).</NugetPackageSummary>
     <NugetPackageId>Machine.Specifications.Mvc</NugetPackageId>
     <NugetPushUrl>http://packages.nuget.org/v1/</NugetPushUrl>
   </PropertyGroup>
