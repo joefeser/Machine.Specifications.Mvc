@@ -34,6 +34,26 @@ namespace Machine.Specifications.Mvc.Specs
     }
 
     [Subject(typeof(ActionResultExtensions))]
+    public class when_an_action_result_that_is_a_partial_view_result_is_asked_if_it_is_a_partial_view_result
+    {
+        static Exception exception;
+
+        Because of = () => exception = Catch.Exception(() => new PartialViewResult().ShouldBeAPartialView());
+
+        It should_not_throw_an_exception = () => exception.ShouldBeNull();
+    }
+
+    [Subject(typeof(ActionResultExtensions))]
+    public class when_an_action_result_that_is_not_a_partial_view_result_is_asked_if_it_is_a_partial_view_result 
+    {
+        static Exception exception;
+
+        Because of = () => exception = Catch.Exception(()=> new RedirectToRouteResult("", null).ShouldBeAPartialView());
+
+        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+    }
+
+    [Subject(typeof(ActionResultExtensions))]
     public class when_an_action_result_that_is_a_view_result_is_asked_for_the_model
     {
         static Exception exception;

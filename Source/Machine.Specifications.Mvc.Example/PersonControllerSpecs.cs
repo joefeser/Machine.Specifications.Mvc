@@ -83,4 +83,14 @@ namespace Machine.Specifications.Mvc.Example
         It should_redirect_to_the_open_id_url = () => 
             result.ShouldBeARedirect().And().Url.ShouldEqual("http://openid.co.uk");
     }
+
+    [Subject(typeof(PersonController))]
+    public class when_the_person_controller_is_told_to_show_feeback_popup : context_for_a_person_controller
+    {
+        static ActionResult result;
+
+        Because of = () => result = personController.FeedbackPopup();
+
+        It should_show_the_partial_view = () => result.ShouldBeAPartialView();
+    }
 }
