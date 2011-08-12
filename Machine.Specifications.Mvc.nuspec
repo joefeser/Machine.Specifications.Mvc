@@ -3,19 +3,23 @@
   <metadata>
     <id>Machine.Specifications.Mvc</id>
     <title>Machine.Specifications.Mvc</title>
-    <version>1.0.1.0</version>
+    <version>1.0.2.0</version>
     <authors>James Broome, Joe Feser</authors>
     <owners>James Broome</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Machine.Specifications.Mvc is a set of extensions for testing ASP.Net MVC specific types. 
 
-It aims to ease the testing of ActionResult objects returned from MVC Controllers by providing an Machine.Specifications (MSpec) BDD syntax over these types.</description>
+It aims to ease the testing of ActionResult objects returned from MVC Controllers by providing an Machine.Specifications (MSpec) BDD syntax over these types.
+
+v1.0.2.0 - Added support for Partial View (ShouldBeAPartialView)
+</description>
     <summary>Machine.Specifications.Mvc is a set of extensions for testing ASP.Net MVC specific types using Machine.Specifications (MSpec). (Debug)</summary>
     <projectUrl>https://github.com/joefeser/Machine.Specifications.Mvc</projectUrl>
     <dependencies>
       <dependency id="Machine.Specifications" version="0.4.23.0" />
     </dependencies>
-    <tags>MSpec, test, unit, testing, context, specification, BDD, TDD</tags>
+    <iconUrl>http://github.com/machine/machine.specifications/raw/master/Misc/Machine.Specifications-32x32.png</iconUrl>
+    <tags>MSpec test unit testing context specification bdd tdd</tags>
   </metadata>
   <files>
     <file src="BuildOutput\bin\Machine.Specifications.Mvc.dll" target="lib" />
