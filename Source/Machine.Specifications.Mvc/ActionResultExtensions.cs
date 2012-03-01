@@ -37,11 +37,15 @@ namespace Machine.Specifications.Mvc
 
         public static void ShouldRedirectToAction<TController>(this ActionResult actionResult, Expression<Action<TController>> action) where TController : Controller
         {
-            actionResult.ShouldBeARedirectToRoute()
-            .And().ControllerName().ToLower().ShouldEqual(ControllerExtensions.RoutingName<TController>().ToLower());
+            // only test the controller name if the controller route value is present (it's not present when redirecting within same controller)
+            if (actionResult.ShouldBeARedirectToRoute().And().RouteValues["controller"] != null)
+            {            
+                actionResult.ShouldBeARedirectToRoute().And().ControllerName().ToLower().ShouldEqual(ControllerExtensions.RoutingName<TController>().ToLower());
+            }
 
             actionResult.ShouldBeARedirectToRoute()
                 .And().ActionName().ToLower().ShouldEqual(action.GetMethodBodyName().ToLower());
         }
+
     }
 }
