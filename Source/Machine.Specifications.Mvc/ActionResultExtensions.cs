@@ -11,10 +11,11 @@ namespace Machine.Specifications.Mvc
             actionResult.ShouldBeOfType<ViewResult>();
             return new ViewResultAnd(actionResult as ViewResult);
         }
-               
-        public static void ShouldBeAPartialView(this ActionResult actionResult)
+
+        public static PartialViewResultAnd ShouldBeAPartialView(this ActionResult actionResult)
         {
             actionResult.ShouldBeOfType<PartialViewResult>();
+            return new PartialViewResultAnd(actionResult as PartialViewResult);
         }
 
         public static RedirectToRouteResultAnd ShouldBeARedirectToRoute(this ActionResult actionResult)
@@ -36,11 +37,15 @@ namespace Machine.Specifications.Mvc
 
         public static void ShouldRedirectToAction<TController>(this ActionResult actionResult, Expression<Action<TController>> action) where TController : Controller
         {
-            actionResult.ShouldBeARedirectToRoute()
-            .And().ControllerName().ToLower().ShouldEqual(ControllerExtensions.RoutingName<TController>().ToLower());
+            // only test the controller name if the controller route value is present (it's not present when redirecting within same controller)
+            if (actionResult.ShouldBeARedirectToRoute().And().RouteValues["controller"] != null)
+            {            
+                actionResult.ShouldBeARedirectToRoute().And().ControllerName().ToLower().ShouldEqual(ControllerExtensions.RoutingName<TController>().ToLower());
+            }
 
             actionResult.ShouldBeARedirectToRoute()
                 .And().ActionName().ToLower().ShouldEqual(action.GetMethodBodyName().ToLower());
         }
+
     }
 }

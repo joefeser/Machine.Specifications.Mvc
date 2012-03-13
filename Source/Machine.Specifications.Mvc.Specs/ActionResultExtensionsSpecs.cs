@@ -154,8 +154,24 @@ namespace Machine.Specifications.Mvc.Specs
         It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
     }
 
-    [Subject(typeof(ActionResultExtensions))]
-    public class when_an_action_result_that_is_a_redirect_result_is_asked_if_it_redirects_to_an_action_on_a_controller_and_it_does
+    [Subject(typeof(ActionResultExtensions), "Given an action redirects to another action on the same controller")]
+    public class when_asking_if_a_redirect_occurs_to_that_same_controller_and_action
+    {
+        static Exception exception;
+        static RedirectToRouteResult redirectToRouteResult;
+
+        Establish context = () =>
+        {
+            redirectToRouteResult = new RedirectToRouteResult(new RouteValueDictionary(new { action = "Index" }));
+        };
+
+        Because of = () => exception = Catch.Exception(() => redirectToRouteResult.ShouldRedirectToAction<HomeController>(x => x.Index()));
+
+        It should_not_throw_an_exception = () => exception.ShouldBeNull();
+    }
+
+    [Subject(typeof(ActionResultExtensions), "Given an action redirects to another action on a different controller")]
+    public class when_asking_if_a_redirect_occurs_to_that_different_controller_and_action
     {
         static Exception exception;
         static RedirectToRouteResult redirectToRouteResult;
