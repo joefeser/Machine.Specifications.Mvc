@@ -15,13 +15,13 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
-[assembly: AssemblyVersion("1.5.51")]
-[assembly: AssemblyFileVersion("1.5.51.0")]
+[assembly: AssemblyVersion("1.5.9")]
+[assembly: AssemblyFileVersion("1.5.9.0")]
 [assembly: AssemblyCopyright("Copyright (c) James Broome 2012")]
 [assembly: AssemblyConfiguration("Debug")]
 [assembly: AssemblyCompany("James Broome")]
 [assembly: AssemblyProduct("Machine.Specifications.Mvc is a set of extensions for testing ASP.Net MVC specifi" +
     "c types. \r\n\r\nIt aims to ease the testing of ActionResult objects returned from M" +
-    "VC Controllers by providing an MSpec BDD syntax over these types. (Debug DB: 0)")]
+    "VC Controllers by providing an MSpec BDD syntax over these types. (Debug DB: 1)")]
 
 
