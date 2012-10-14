@@ -82,14 +82,13 @@
     </Compile>
     <Compile Include="ActionResultExtensionsSpecs.cs" />
     <Compile Include="ControllerExtensionsSpecs.cs" />
-    <Compile Include="PartialViewResultAndSpecs.cs" />
+    <Compile Include="ActionResultAndSpecs.cs" />
     <Compile Include="ExpressionActionExtensionsSpecs.cs" />
-    <Compile Include="RedirectResultAndSpecs.cs" />
     <Compile Include="RedirectToRouteResultExtensionsSpecs.cs" />
-    <Compile Include="RedirectToRouteResultAndSpecs.cs" />
     <Compile Include="ModelTypeAndSpecs.cs" />
-    <Compile Include="ViewResultAndSpecs.cs" />
-    <Compile Include="ViewResultExtensionsSpecs.cs" />
+    <Compile Include="ActionResults\TestActionResult.cs" />
+    <Compile Include="ActionResults\TestViewResult.cs" />
+    <Compile Include="ViewResultBaseExtensionsSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
