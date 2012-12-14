@@ -5,8 +5,8 @@
 
   <!-- Version Information -->
   <PropertyGroup>
-    <AppVersion>1.5.9</AppVersion>
-	<Build>1</Build>
+    <AppVersion>1.5.10</AppVersion>
+	<Build>2</Build>
     <SchemaVersion>1</SchemaVersion>
   </PropertyGroup>
 
