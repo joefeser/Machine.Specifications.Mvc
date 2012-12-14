@@ -24,7 +24,7 @@
   <PropertyGroup>
     <InTeamCity Condition="'$(build_number)' == ''">false</InTeamCity>
     <InTeamCity Condition="'$(build_number)' != ''">true</InTeamCity>
-    <BuildNumber Condition="!$(InTeamCity)">0</BuildNumber>
+    <BuildNumber Condition="!$(InTeamCity)">$(Build)</BuildNumber>
     <BuildNumber Condition="$(InTeamCity)">$(build_number)</BuildNumber>
   </PropertyGroup>
 
