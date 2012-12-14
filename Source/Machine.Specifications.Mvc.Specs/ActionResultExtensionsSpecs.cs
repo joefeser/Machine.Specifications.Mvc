@@ -4,11 +4,36 @@
 // </auto-generated>
 //-------------------------------------------------------------------------------------------------
 
+using Machine.Specifications.Mvc.Specs.ActionResults;
+
 namespace Machine.Specifications.Mvc.Specs
 {
     using System;
     using System.Web.Mvc;
     using System.Web.Routing;
+
+    [Subject(typeof(ActionResultExtensions))]
+    public class when_an_action_result_that_is_not_of_the_given_type_of_action_result_is_asked_if_it_is__of_that_type
+    {
+        static Exception exception;
+        static object result;
+
+        Because of = () => exception = Catch.Exception(() => result = new TestActionResult().ShouldBeA<TestActionResult>());
+
+        It should_not_throw_an_exception = () => exception.ShouldBeNull();
+
+        It should_allow_the_chaining_of_action_result_assertions = () => result.ShouldBeOfType<ActionResultAnd<TestActionResult>>();
+    }
+
+    [Subject(typeof(ActionResultExtensions))]
+    public class when_an_action_result_that_is_of_the_given_type_is_asked_if_it_is_of_that_type
+    {
+        static Exception exception;
+
+        Because of = () => exception = Catch.Exception(() => new ViewResult().ShouldBeA<TestActionResult>());
+
+        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+    }
 
     [Subject(typeof(ActionResultExtensions))]
     public class when_an_action_result_that_is_a_view_result_is_asked_if_it_is_a_view_result
@@ -20,7 +45,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         It should_not_throw_an_exception = () => exception.ShouldBeNull();
 
-        It should_allow_the_chaining_of_view_result_assertions = () => result.ShouldBeOfType<ViewResultAnd>();
+        It should_allow_the_chaining_of_view_result_assertions = () => result.ShouldBeOfType<ActionResultAnd<ViewResult>>();
     }
 
     [Subject(typeof(ActionResultExtensions))]
@@ -118,7 +143,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         It should_not_throw_an_exception = () => exception.ShouldBeNull();
 
-        It should_allow_the_chaining_of_redirect_to_route_result_assertions = () => result.ShouldBeOfType<RedirectToRouteResultAnd>();
+        It should_allow_the_chaining_of_redirect_to_route_result_assertions = () => result.ShouldBeOfType<ActionResultAnd<RedirectToRouteResult>>();
     }
 
     [Subject(typeof(ActionResultExtensions))]
@@ -141,7 +166,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         It should_not_throw_an_exception = () => exception.ShouldBeNull();
 
-        It should_allow_the_chaining_of_redirect_result_assertions = () => result.ShouldBeOfType<RedirectResultAnd>();
+        It should_allow_the_chaining_of_redirect_result_assertions = () => result.ShouldBeOfType<ActionResultAnd<RedirectResult>>();
     }
 
     [Subject(typeof(ActionResultExtensions))]

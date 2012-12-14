@@ -16,3 +16,6 @@ NDependOut
 Source/packages/*
 packages/*
 BuildOutput/*
+*.ncrunchsolution
+*.ncrunchsolution.user
+*.DotSettings.user

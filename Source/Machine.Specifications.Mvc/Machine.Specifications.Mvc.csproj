@@ -80,16 +80,13 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ActionResultAnd.cs" />
     <Compile Include="ActionResultExtensions.cs" />
     <Compile Include="ControllerExtensions.cs" />
-    <Compile Include="PartialViewResultAnd.cs" />
     <Compile Include="ExpressionActionExtensions.cs" />
     <Compile Include="ModelTypeAnd.cs" />
-    <Compile Include="RedirectResultAnd.cs" />
-    <Compile Include="RedirectToRouteResultAnd.cs" />
     <Compile Include="RedirectToRouteResultExtensions.cs" />
-    <Compile Include="ViewResultAnd.cs" />
-    <Compile Include="ViewResultExtensions.cs" />
+    <Compile Include="ViewResultBaseExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
