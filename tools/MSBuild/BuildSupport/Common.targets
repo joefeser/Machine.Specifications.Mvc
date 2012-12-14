@@ -17,7 +17,6 @@
     <HelpDir>$(OutputDir)\Help</HelpDir>
     <TestOutputDir>$(OutputDir)\TestResults</TestOutputDir>
     <NuGetPackageDir>$(OutputDir)\NuGet</NuGetPackageDir>
-    <SrcDir>$(OutputDir)\src</SrcDir>
   </PropertyGroup>
 
   <!-- Version Information -->
@@ -39,7 +38,13 @@
   <PropertyGroup>
     <ZipQualifier>_$(AppVersion).$(BuildNumber)_$(Configuration).zip</ZipQualifier>
   </PropertyGroup>
- 
+
+  <!-- Nuget -->
+  <PropertyGroup>
+    <NugetPackageSpecFile>$(MSBuildProjectDirectory)\$(ProductName).nuspec</NugetPackageSpecFile>
+    <NugetPackageName>$(ProductName).$(AppVersion).$(BuildNumber)</NugetPackageName>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectToBuild Include="$(MSBuildProjectDirectory)\$(ProductName).sln"></ProjectToBuild>
   </ItemGroup>
@@ -50,7 +55,7 @@
   <Target Name="Dist" DependsOnTargets="Clean;InstallPackages;Version;Build;Test;Document;Publish"/>
   <Target Name="TeamCityBuild" DependsOnTargets="Clean;InstallPackages;Version;Build;Test"/>
   <Target Name="TeamCityPublish" DependsOnTargets="Document;Publish"/>
-  
+
   <Target Name="Clean">
     <Message Importance="high" Text="Clean"/>
     <Message Importance="high" Text="======================================================="/>
@@ -60,11 +65,12 @@
     <Message Importance="high" Text="MSBuild Path: $(MSBuildBinPath)"/>
     <Message Importance="high" Text="-------------------------------------------------------"/>
     <Message Importance="high" Text="Uses Help" Condition = "Exists('$(HelpProject)')"/>
-    <Message Importance="high" Text="Uses Nuget" Condition = "@(NugetItem) != ''"/>
+    <Message Importance="high" Text="Uses Nuget" Condition = "Exists('$(NugetPackageSpecFile)')"/>
     <Message Importance="high" Text="GenerateDocs = $(GenerateDocs)"/>
     <Message Importance="high" Text="PublishWebHelp = $(PublishWebHelp)"/>
     <Message Importance="high" Text="PublicWebHelpDir = $(PublicWebHelpDir)"/>
     <Message Importance="high" Text="PublishNugetPackage = $(PublishNugetPackage)"/>
+    <Message Importance="high" Text="PublishNugetDestination = $(NugetPushUrl)"/>
     <Message Importance="high" Text="======================================================="/>
     <RemoveDir Directories="$(OutputDir)" ContinueOnError="true"/>
     <MakeDir Directories="$(OutputDir)"/>
@@ -72,7 +78,7 @@
     <MakeDir Directories="$(DistributionDir)"/>
     <MakeDir Directories="$(HelpDir)"/>
     <MakeDir Directories="$(TestOutputDir)"/>
-    <MakeDir Directories="$(NuGetPackageDir)" Condition="@(NugetItem) != ''"/>
+    <MakeDir Directories="$(NuGetPackageDir)" Condition="Exists('$(NugetPackageSpecFile)')"/>
   </Target>
 
   <Target Name="InstallPackages">
@@ -83,23 +89,23 @@
     <ItemGroup>
       <ProjectWithPackages Include="%(Values.path)"/>
     </ItemGroup>
-    <Exec WorkingDirectory="$(PackageDir)" 
-          Command="$(NuGet) install %(ProjectWithPackages.Identity) -s https://go.microsoft.com/fwlink/?LinkID=206669 -o $(MSBuildProjectDirectory)\packages"/>
+    <Exec WorkingDirectory="$(PackageDir)"
+          Command="$(NuGet) install %(ProjectWithPackages.Identity) -s https://go.microsoft.com/fwlink/?LinkID=206669;$(NugetPushUrl) -o $(MSBuildProjectDirectory)\packages"/>
   </Target>
-  
+
   <Target Name="Version">
     <Message Importance="high" Text="Version"/>
     <Time>
       <Output TaskParameter="Year" PropertyName="Year"/>
     </Time>
-    <AssemblyInfo OutputFile="$(MSBuildProjectDirectory)\src\CommonAssemblyInfo.cs" CodeLanguage="C#"
-            ComVisible="false" AssemblyCulture=""
-            AssemblyVersion="$(AppVersion).$(BuildNumber)"
-            AssemblyFileVersion="$(AppVersion).$(BuildNumber)"
-            AssemblyCopyright="Copyright (C) $(CompanyName) $(Year)"
-            AssemblyConfiguration="$(Configuration)"
-            AssemblyCompany="$(CompanyName)"
-            AssemblyProduct="$(ProductDescription) ($(Configuration) DB: $(SchemaVersion))"/>
+    <AssemblyInfo OutputFile="$(MSBuildProjectDirectory)\$(SourceRoot)\CommonAssemblyInfo.cs" CodeLanguage="C#"
+					  ComVisible="false" AssemblyCulture=""
+					  AssemblyVersion="$(AppVersion).$(BuildNumber)"
+					  AssemblyFileVersion="$(AppVersion).$(BuildNumber)"
+					  AssemblyCopyright="Copyright (c) $(CompanyName) $(Year)"
+					  AssemblyConfiguration="$(Configuration)"
+					  AssemblyCompany="$(CompanyName)"
+					  AssemblyProduct="$(ProductDescription) ($(Configuration) DB: $(SchemaVersion))"/>
 
     <CallTarget Targets="VersionHelp"/>
   </Target>
@@ -118,9 +124,9 @@
     <Time>
       <Output TaskParameter="Ticks" PropertyName="StartTick"/>
     </Time>
-     <MSBuild Projects="@(ProjectToBuild)"
-         Targets="Rebuild"
-         Properties="Configuration=$(Configuration);Platform=Any CPU"/>
+    <MSBuild Projects="@(ProjectToBuild)"
+        Targets="Rebuild"
+        Properties="Configuration=$(Configuration);Platform=Any CPU"/>
     <Time>
       <Output TaskParameter="Ticks" PropertyName="EndTick"/>
     </Time>
@@ -143,10 +149,10 @@
   <Target Name="MSpecTests" Outputs="%(MSpecTestItem.Identity)" Condition="@(MSpecTestItem) != ''">
     <Message Importance="high" Text="Testing: %(MSpecTestItem.TestDir)\%(MSpecTestItem.Identity)"/>
     <PropertyGroup>
-      <TestProjectDir>$(MSBuildProjectDirectory)\src\Tests\%(MSpecTestItem.Identity)</TestProjectDir>
+      <TestProjectDir>$(MSBuildProjectDirectory)\$(TestsRoot)\%(MSpecTestItem.Identity)</TestProjectDir>
       <TestDir>$(TestProjectDir)\bin\$(Configuration)</TestDir>
     </PropertyGroup>
-    
+
     <Message Importance="high" Text="Testing: $(TestDir)\%(MSpecTestItem.Identity)"/>
 
     <XmlRead XPath="//package[@id='Machine.Specifications']/@version"
@@ -165,19 +171,19 @@
       <MSpecConfigFiles Include="$(ToolsDir)\MSBuild\BuildSupport\MSpecConfig\*.*"/>
     </ItemGroup>
     <Copy SourceFiles="@(MSpecConfigFiles)" DestinationFolder="$(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools"/>
-    
+
     <Exec WorkingDirectory="$(TestDir)"
           Command="$(MsBuildProjectDirectory)\mspec --html $(TestOutputDir)\%(MSpecTestItem.Identity).results.htm %(MSpecTestItem.Identity).dll" Condition="!$(InTeamCity)"/>
   </Target>
 
   <Target Name="NUnitTests" Outputs="%(NUnitTestItem.Identity)" Condition="@(NUnitTestitem) != ''">
     <PropertyGroup>
-      <TestProjectDir>$(MSBuildProjectDirectory)\src\Tests\%(NUnitTestItem.Identity)</TestProjectDir>
+      <TestProjectDir>$(MSBuildProjectDirectory)\$(TestsRoot)\%(NUnitTestItem.Identity)</TestProjectDir>
       <TestDir>$(TestProjectDir)\bin\$(Configuration)</TestDir>
     </PropertyGroup>
-    
+
     <Message Importance="high" Text="Testing in NUnit: $(TestDir)\%(NUnitTestItem.Identity)"/>
-    
+
     <XmlRead XPath="//package[@id='NUnit']/@version"
              XmlFileName="$(TestProjectDir)\packages.config">
       <Output TaskParameter="Value" PropertyName="NUnitVersion"/>
@@ -195,33 +201,32 @@
     <XmlMassUpdate ContentFile="$(HelpDir)\Web.config"
                NamespaceDefinitions="msb=http://schemas.microsoft.com/developer/msbuild/2003"
                ContentRoot="configuration"
-               SubstitutionsFile="$(ToolsDir)\MSBuild\BuildSupport\Onpoint.targets.properties"
+               SubstitutionsFile="$(ToolsDir)\MSBuild\BuildSupport\Common.targets.properties"
                SubstitutionsRoot="/msb:Project/msb:ProjectExtensions/msb:helpWebConfigContent" />
   </Target>
 
-  <Target Name="Package" Condition="@(NugetItem) != ''">
+  <Target Name="Package" Condition="Exists('$(NugetPackageSpecFile)')">
     <Message Importance="high" Text="Package"/>
 
-    <XmlUpdate XmlFileName="@(NugetItem).nuspec"
+    <XmlUpdate XmlFileName="$(NugetPackageSpecFile)"
                Namespace="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
                Prefix="n"
                XPath="//n:summary"
-               Value="%(NugetItem.NugetPackageSummary) ($(Configuration))"/>
+               Value="$(NugetPackageSummary) ($(Configuration))"/>
 
-    <XmlUpdate XmlFileName="@(NugetItem).nuspec"
+    <XmlUpdate XmlFileName="$(NugetPackageSpecFile)"
                Namespace="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
                Prefix="n"
                XPath="//n:version"
                Value="$(AppVersion).$(BuildNumber)"/>
 
-    <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGet) pack @(NugetItem).nuspec -Symbols"/>
+    <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGet) pack $(NugetPackageSpecFile)"/>
   </Target>
 
   <Target Name="Publish">
     <Message Importance="high" Text="Publish"/>
-    
+
     <CallTarget Targets="PublishBin"/>
-    <CallTarget Targets="PublishSource"/>
     <CallTarget Targets="PublishHelp"/>
     <CallTarget Targets="$(CustomPublishTask)" Condition="$(CustomPublishTask) != ''"/>
     <CallTarget Targets="CreateNugetPackage"/>
@@ -230,11 +235,9 @@
 
   <Target Name="PublishBin" Condition="$(BinInclude) != ''">
     <Message Importance="high" Text="PublishBin"/>
-
     <CreateItem Include="$(BinInclude)" Exclude="$(BinExclude)">
       <Output TaskParameter="Include" ItemName="BinFiles"/>
     </CreateItem>
-    
     <Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BinDir)"/>
 
     <ItemGroup>
@@ -255,42 +258,27 @@
     <Copy SourceFiles="@(HelpFiles)" DestinationFolder="$(PublicWebHelpDir)\%(RecursiveDir)"/>
   </Target>
 
-  <Target Name="PublishSource" Condition="$(SrcInclude) != ''">
-    <Message Importance="high" Text="PublishSource"/>
-
-    <CreateItem Include="$(SrcInclude)" Exclude="$(SrcExclude)">
-      <Output TaskParameter="Include" ItemName="SrcFiles"/>
-    </CreateItem>
-
-    <RemoveDir Directories="$(SrcDir)" ContinueOnError="true"/>
-    <Copy SourceFiles="@(SrcFiles)" DestinationFolder="$(SrcDir)\%(RecursiveDir)" />
-  </Target>
-
-  <Target Name="CreateNugetPackage" Outputs="%(NugetItem.Identity)" Condition="@(NugetItem) != ''">
+  <Target Name="CreateNugetPackage" Condition="Exists('$(NugetPackageSpecFile)')">
     <Message Importance="high" Text="Package"/>
 
-    <XmlUpdate XmlFileName="%(NugetItem.Identity).nuspec"
+    <XmlUpdate XmlFileName="$(NugetPackageSpecFile)"
                Namespace="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
                Prefix="n"
                XPath="//n:summary"
-               Value="%(NugetItem.NugetPackageSummary) ($(Configuration))"/>
+               Value="$(NugetPackageSummary) ($(Configuration))"/>
 
-    <XmlUpdate XmlFileName="%(NugetItem.Identity).nuspec"
+    <XmlUpdate XmlFileName="$(NugetPackageSpecFile)"
                Namespace="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
                Prefix="n"
                XPath="//n:version"
                Value="$(AppVersion).$(BuildNumber)"/>
 
-    <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGet) pack $(MSBuildProjectDirectory)\%(NugetItem.Identity).nuspec -Symbols" Condition="%(NugetItem.NugetPublishSymbols)"/>
-    <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGet) pack $(MSBuildProjectDirectory)\%(NugetItem.Identity).nuspec" Condition="!%(NugetItem.NugetPublishSymbols)"/>
+    <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGet) pack $(NugetPackageSpecFile)"/>
   </Target>
 
-  <Target Name="PublishNugetPackage" Outputs="%(NugetItem.Identity)" Condition="$(PublishNugetPackage)">
-    <Message Importance="high" Text="Publish packages %(NugetItem.NugetPackageSummary) to %(NugetItem.NugetPushUrl) with symbols=%(NugetItem.NugetPublishSymbols)"/>
-    <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGet) push %(NugetItem.NugetPackageId).$(AppVersion).$(BuildNumber).nupkg  -source %(NugetItem.NugetPushUrl)"/>
-    <!--Publish the symbols-->
-    <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGet) push %(NugetItem.NugetPackageId).$(AppVersion).$(BuildNumber).symbols.nupkg -source http://nuget.gw.symbolsource.org/Public/NuGet " Condition="%(NugetItem.NugetPublishSymbols)"/>
-
+  <Target Name="PublishNugetPackage" Condition="$(PublishNugetPackage)">
+    <Message Importance="high" Text="Publish packages $(NugetPackageName)"/>
+    <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGet) push -source $(NugetPushUrl) $(NugetPackageId).$(AppVersion).$(BuildNumber).nupkg"/>
   </Target>
-  
+
 </Project>
