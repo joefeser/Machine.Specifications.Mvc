@@ -5,8 +5,9 @@
 
   <!-- Version Information -->
   <PropertyGroup>
-    <AppVersion>1.5.51</AppVersion>
-    <SchemaVersion>0</SchemaVersion>
+    <AppVersion>1.5.10</AppVersion>
+	<Build>2</Build>
+    <SchemaVersion>1</SchemaVersion>
   </PropertyGroup>
 
   <!--Source and Tests Folder relative to root
