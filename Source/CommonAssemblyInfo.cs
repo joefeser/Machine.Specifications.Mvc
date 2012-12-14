@@ -15,7 +15,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
-[assembly: AssemblyVersion("1.5.10")]
+[assembly: AssemblyVersion("1.5.10.2")]
 [assembly: AssemblyFileVersion("1.5.10.2")]
 [assembly: AssemblyCopyright("Copyright (c) James Broome 2012")]
 [assembly: AssemblyConfiguration("Debug")]
