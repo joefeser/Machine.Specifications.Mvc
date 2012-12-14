@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Machine.Specifications.Mvc4</id>
-    <title>Machine.Specifications.Mvc4</title>
+    <id>Machine.Specifications.Mvc</id>
+    <title>Machine.Specifications.Mvc</title>
     <version>1.5.10.2</version>
     <authors>James Broome, Joe Feser</authors>
     <owners>James Broome</owners>
