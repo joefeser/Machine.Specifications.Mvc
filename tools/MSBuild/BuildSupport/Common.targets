@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets ="Dist" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!-- See https://onpointondemand.fogbugz.com/default.asp?W695 for documentation -->
   <!-- Tools -->
   <PropertyGroup>
     <ToolsDir>$(MSBuildProjectDirectory)\tools</ToolsDir>
@@ -24,7 +23,7 @@
   <PropertyGroup>
     <InTeamCity Condition="'$(build_number)' == ''">false</InTeamCity>
     <InTeamCity Condition="'$(build_number)' != ''">true</InTeamCity>
-    <BuildNumber Condition="!$(InTeamCity)">0</BuildNumber>
+    <BuildNumber Condition="!$(InTeamCity)">$(Build)</BuildNumber>
     <BuildNumber Condition="$(InTeamCity)">$(build_number)</BuildNumber>
   </PropertyGroup>
 
@@ -101,7 +100,7 @@
     </Time>
     <AssemblyInfo OutputFile="$(MSBuildProjectDirectory)\$(SourceRoot)\CommonAssemblyInfo.cs" CodeLanguage="C#"
 					  ComVisible="false" AssemblyCulture=""
-					  AssemblyVersion="$(AppVersion)"
+					  AssemblyVersion="$(AppVersion).$(BuildNumber)"
 					  AssemblyFileVersion="$(AppVersion).$(BuildNumber)"
 					  AssemblyCopyright="Copyright (c) $(CompanyName) $(Year)"
 					  AssemblyConfiguration="$(Configuration)"
@@ -202,7 +201,7 @@
     <XmlMassUpdate ContentFile="$(HelpDir)\Web.config"
                NamespaceDefinitions="msb=http://schemas.microsoft.com/developer/msbuild/2003"
                ContentRoot="configuration"
-               SubstitutionsFile="$(ToolsDir)\MSBuild\BuildSupport\Onpoint.targets.properties"
+               SubstitutionsFile="$(ToolsDir)\MSBuild\BuildSupport\Common.targets.properties"
                SubstitutionsRoot="/msb:Project/msb:ProjectExtensions/msb:helpWebConfigContent" />
   </Target>
 

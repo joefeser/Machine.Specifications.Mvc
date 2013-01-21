@@ -6,22 +6,19 @@ namespace Machine.Specifications.Mvc
 
     public static class ActionResultExtensions
     {
-        public static ViewResultAnd ShouldBeAView(this ActionResult actionResult)
+        public static ActionResultAnd<ViewResult> ShouldBeAView(this ActionResult actionResult)
         {
-            actionResult.ShouldBeOfType<ViewResult>();
-            return new ViewResultAnd(actionResult as ViewResult);
+            return actionResult.ShouldBeA<ViewResult>();
         }
 
-        public static PartialViewResultAnd ShouldBeAPartialView(this ActionResult actionResult)
+        public static ActionResultAnd<PartialViewResult> ShouldBeAPartialView(this ActionResult actionResult)
         {
-            actionResult.ShouldBeOfType<PartialViewResult>();
-            return new PartialViewResultAnd(actionResult as PartialViewResult);
+            return actionResult.ShouldBeA<PartialViewResult>();
         }
 
-        public static RedirectToRouteResultAnd ShouldBeARedirectToRoute(this ActionResult actionResult)
+        public static ActionResultAnd<RedirectToRouteResult> ShouldBeARedirectToRoute(this ActionResult actionResult)
         {
-            actionResult.ShouldBeOfType<RedirectToRouteResult>();
-            return new RedirectToRouteResultAnd(actionResult as RedirectToRouteResult);
+            return actionResult.ShouldBeA<RedirectToRouteResult>();
         }
 
         public static T Model<T>(this ActionResult actionResult)
@@ -29,10 +26,9 @@ namespace Machine.Specifications.Mvc
             return actionResult.ShouldBeAView().And().ShouldHaveModelOfType<T>().And();
         }
 
-        public static RedirectResultAnd ShouldBeARedirect(this ActionResult actionResult)
+        public static ActionResultAnd<RedirectResult> ShouldBeARedirect(this ActionResult actionResult)
         {
-            actionResult.ShouldBeOfType<RedirectResult>();
-            return new RedirectResultAnd(actionResult as RedirectResult);
+            return actionResult.ShouldBeA<RedirectResult>();
         }
 
         public static void ShouldRedirectToAction<TController>(this ActionResult actionResult, Expression<Action<TController>> action) where TController : Controller
@@ -47,5 +43,11 @@ namespace Machine.Specifications.Mvc
                 .And().ActionName().ToLower().ShouldEqual(action.GetMethodBodyName().ToLower());
         }
 
+        public static ActionResultAnd<TActionResult> ShouldBeA<TActionResult>(this ActionResult actionResult)
+            where TActionResult : ActionResult
+        {
+            actionResult.ShouldBeOfType<TActionResult>();
+            return new ActionResultAnd<TActionResult>(actionResult as TActionResult);
+        }
     }
 }

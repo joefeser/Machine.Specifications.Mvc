@@ -53,12 +53,16 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Machine.Specifications, Version=0.5.5.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Machine.Specifications, Version=0.5.10.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Machine.Specifications.0.5.5.0\lib\net40\Machine.Specifications.dll</HintPath>
+      <HintPath>..\..\packages\Machine.Specifications.0.5.10\lib\net40\Machine.Specifications.dll</HintPath>
     </Reference>
-    <Reference Include="Machine.Specifications.Clr4">
-      <HintPath>..\..\packages\Machine.Specifications.0.5.5.0\lib\net40\Machine.Specifications.Clr4.dll</HintPath>
+    <Reference Include="Machine.Specifications.Clr4, Version=0.5.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Machine.Specifications.0.5.10\lib\net40\Machine.Specifications.Clr4.dll</HintPath>
+    </Reference>
+    <Reference Include="Machine.Specifications.TDNetRunner">
+      <HintPath>..\..\packages\Machine.Specifications.0.5.10\lib\net40\Machine.Specifications.TDNetRunner.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -66,10 +70,7 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\System.Web.Mvc.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -84,16 +85,13 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ActionResultAnd.cs" />
     <Compile Include="ActionResultExtensions.cs" />
     <Compile Include="ControllerExtensions.cs" />
-    <Compile Include="PartialViewResultAnd.cs" />
     <Compile Include="ExpressionActionExtensions.cs" />
     <Compile Include="ModelTypeAnd.cs" />
-    <Compile Include="RedirectResultAnd.cs" />
-    <Compile Include="RedirectToRouteResultAnd.cs" />
     <Compile Include="RedirectToRouteResultExtensions.cs" />
-    <Compile Include="ViewResultAnd.cs" />
-    <Compile Include="ViewResultExtensions.cs" />
+    <Compile Include="ViewResultBaseExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
