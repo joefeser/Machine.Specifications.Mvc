@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Machine.Specifications.Mvc4</id>
-    <title>Machine.Specifications.Mvc4</title>
-    <version>1.6.1.0</version>
+    <id>Machine.Specifications.Mvc5</id>
+    <title>Machine.Specifications.Mvc5</title>
+    <version>1.6.1.2</version>
     <authors>James Broome, Joe Feser</authors>
     <owners>James Broome</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -11,13 +11,13 @@
 
 It aims to ease the testing of ActionResult objects returned from MVC Controllers by providing an Machine.Specifications (MSpec) BDD syntax over these types.
 
-v1.0.2.0 - Added support for Partial View (ShouldBeAPartialView)
+
 </description>
     <summary>Machine.Specifications.Mvc is a set of extensions for testing ASP.Net MVC specific types using Machine.Specifications (MSpec). (Debug)</summary>
-    <releaseNotes>Refactored "And" objects to a single generic object. Some return types in ActionResultExtensions (i.e. ViewResultAnd became ActionResultAnd&lt;ViewResult&gt;), so it could break someone's code if they wrote extension methods based on those return types.</releaseNotes>
+    <releaseNotes>v1.6.1 added support for MVC5</releaseNotes>
     <projectUrl>https://github.com/joefeser/Machine.Specifications.Mvc</projectUrl>
     <dependencies>
-      <dependency id="Machine.Specifications" version="0.5.10" />
+      <dependency id="Machine.Specifications" version="0.6.1" />
     </dependencies>
     <iconUrl>http://github.com/machine/machine.specifications/raw/master/Misc/Machine.Specifications-32x32.png</iconUrl>
     <tags>MSpec test unit testing context specification bdd tdd</tags>
