@@ -15,9 +15,9 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
-[assembly: AssemblyVersion("1.6.1.2")]
-[assembly: AssemblyFileVersion("1.6.1.2")]
-[assembly: AssemblyCopyright("Copyright (c) James Broome 2013")]
+[assembly: AssemblyVersion("1.6.1.0")]
+[assembly: AssemblyFileVersion("1.6.1.0")]
+[assembly: AssemblyCopyright("Copyright (c) James Broome 2014")]
 [assembly: AssemblyConfiguration("Debug")]
 [assembly: AssemblyCompany("James Broome")]
 [assembly: AssemblyProduct("Machine.Specifications.Mvc is a set of extensions for testing ASP.Net MVC specifi" +
