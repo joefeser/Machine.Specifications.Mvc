@@ -17,7 +17,7 @@ It aims to ease the testing of ActionResult objects returned from MVC Controller
     <releaseNotes>v1.6.1 added support for MVC5</releaseNotes>
     <projectUrl>https://github.com/joefeser/Machine.Specifications.Mvc</projectUrl>
     <dependencies>
-      <dependency id="Machine.Specifications" version="0.6.1" />
+      <dependency id="Machine.Specifications" version="0.6.2" />
     </dependencies>
     <iconUrl>http://github.com/machine/machine.specifications/raw/master/Misc/Machine.Specifications-32x32.png</iconUrl>
     <tags>MSpec test unit testing context specification bdd tdd</tags>

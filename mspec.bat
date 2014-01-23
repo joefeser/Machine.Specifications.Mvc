@@ -1,2 +1,2 @@
 @echo off
-"C:\code\Machine.Specifications.Mvc\packages\Machine.Specifications.0.6.1\tools\mspec-clr4.exe" %*
+"c:\work\github\Machine.Specifications.Mvc\packages\Machine.Specifications.0.6.2\tools\mspec-clr4.exe" %*
