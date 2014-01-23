@@ -17,5 +17,6 @@ Source/packages/*
 packages/*
 BuildOutput/*
 *.ncrunchsolution
+*.ncrunchproject
 *.ncrunchsolution.user
 *.DotSettings.user
