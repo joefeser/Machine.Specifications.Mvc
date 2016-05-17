@@ -22,7 +22,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         It should_not_throw_an_exception = () => exception.ShouldBeNull();
 
-        It should_allow_the_chaining_of_view_result_assertions = () => result.ShouldBeOfType<ActionResultAnd<TestViewResult>>();
+        It should_allow_the_chaining_of_view_result_assertions = () => result.ShouldBeAssignableTo<ActionResultAnd<TestViewResult>>();
     }
 
     [Subject(typeof(ViewResultBaseExtensions))]
@@ -34,7 +34,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         private Because of = () => exception = Catch.Exception(() => result = new TestViewResult() {ViewName = ViewName}.ShouldUseView("Other" + ViewName));
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 
     [Subject(typeof(ViewResultBaseExtensions))]
@@ -44,7 +44,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         Because of = () => exception = Catch.Exception(()=> new TestViewResult() { ViewName = "NonDefault" }.ShouldUseDefaultView());
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 
     [Subject(typeof(ViewResultBaseExtensions))]
@@ -57,7 +57,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         It should_not_throw_an_exception = () => exception.ShouldBeNull();
 
-        It should_allow_the_chaining_of_view_result_assertions = () => result.ShouldBeOfType<ActionResultAnd<TestViewResult>>();
+        It should_allow_the_chaining_of_view_result_assertions = () => result.ShouldBeAssignableTo<ActionResultAnd<TestViewResult>>();
     }
 
     [Subject(typeof(ViewResultBaseExtensions))]
@@ -76,7 +76,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         It should_not_throw_an_exception = () => exception.ShouldBeNull();
 
-        It should_should_allow_the_chaining_of_model_type_assertions = () => result.ShouldBeOfType<ModelTypeAnd<string>>();
+        It should_should_allow_the_chaining_of_model_type_assertions = () => result.ShouldBeAssignableTo<ModelTypeAnd<string>>();
     }
 
     [Subject(typeof (ViewResultBaseExtensions))]
@@ -92,7 +92,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         Because of = () => exception = Catch.Exception(() => viewResult.ShouldNotHaveAModel());
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 
     [Subject(typeof(ViewResultBaseExtensions))]
@@ -111,6 +111,6 @@ namespace Machine.Specifications.Mvc.Specs
 
         It should_not_throw_an_exception = () => exception.ShouldBeNull();
 
-        It should_allow_the_chaining_of_view_result_assertions = () => result.ShouldBeOfType<ActionResultAnd<TestViewResult>>();
+        It should_allow_the_chaining_of_view_result_assertions = () => result.ShouldBeAssignableTo<ActionResultAnd<TestViewResult>>();
     }
 }   

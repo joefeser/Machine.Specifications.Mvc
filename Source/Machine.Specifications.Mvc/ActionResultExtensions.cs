@@ -46,7 +46,7 @@ namespace Machine.Specifications.Mvc
         public static ActionResultAnd<TActionResult> ShouldBeA<TActionResult>(this ActionResult actionResult)
             where TActionResult : ActionResult
         {
-            actionResult.ShouldBeOfType<TActionResult>();
+            actionResult.ShouldBeAssignableTo<TActionResult>();
             return new ActionResultAnd<TActionResult>(actionResult as TActionResult);
         }
     }
