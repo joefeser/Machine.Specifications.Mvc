@@ -22,7 +22,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         It should_not_throw_an_exception = () => exception.ShouldBeNull();
 
-        It should_allow_the_chaining_of_action_result_assertions = () => result.ShouldBeOfType<ActionResultAnd<TestActionResult>>();
+        It should_allow_the_chaining_of_action_result_assertions = () => result.ShouldBeAssignableTo<ActionResultAnd<TestActionResult>>();
     }
 
     [Subject(typeof(ActionResultExtensions))]
@@ -32,7 +32,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         Because of = () => exception = Catch.Exception(() => new ViewResult().ShouldBeA<TestActionResult>());
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 
     [Subject(typeof(ActionResultExtensions))]
@@ -45,7 +45,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         It should_not_throw_an_exception = () => exception.ShouldBeNull();
 
-        It should_allow_the_chaining_of_view_result_assertions = () => result.ShouldBeOfType<ActionResultAnd<ViewResult>>();
+        It should_allow_the_chaining_of_view_result_assertions = () => result.ShouldBeAssignableTo<ActionResultAnd<ViewResult>>();
     }
 
     [Subject(typeof(ActionResultExtensions))]
@@ -55,7 +55,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         Because of = () => exception = Catch.Exception(()=> new RedirectToRouteResult("", null).ShouldBeAView());
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 
     [Subject(typeof(ActionResultExtensions))]
@@ -75,7 +75,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         Because of = () => exception = Catch.Exception(()=> new RedirectToRouteResult("", null).ShouldBeAPartialView());
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 
     [Subject(typeof(ActionResultExtensions))]
@@ -95,7 +95,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         It should_throw_not_throw_an_exception = () => exception.ShouldBeNull();
 
-        It should_return_the_model_as_the_specified_type = () => result.ShouldBeOfType<string>();
+        It should_return_the_model_as_the_specified_type = () => result.ShouldBeAssignableTo<string>();
 
         It should_return_the_correct_model = () => result.ShouldEqual(model);
     }
@@ -113,7 +113,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         Because of = () => exception = Catch.Exception(() => redirectResult.Model<string>());
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 
     [Subject(typeof(ActionResultExtensions))]
@@ -130,7 +130,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         Because of = () => exception = Catch.Exception(() => viewResult.Model<string>());
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 
     [Subject(typeof(ActionResultExtensions))]
@@ -143,7 +143,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         It should_not_throw_an_exception = () => exception.ShouldBeNull();
 
-        It should_allow_the_chaining_of_redirect_to_route_result_assertions = () => result.ShouldBeOfType<ActionResultAnd<RedirectToRouteResult>>();
+        It should_allow_the_chaining_of_redirect_to_route_result_assertions = () => result.ShouldBeAssignableTo<ActionResultAnd<RedirectToRouteResult>>();
     }
 
     [Subject(typeof(ActionResultExtensions))]
@@ -153,7 +153,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         Because of = () => exception = Catch.Exception(() => new ViewResult().ShouldBeARedirectToRoute());
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 
     [Subject(typeof(ActionResultExtensions))]
@@ -166,7 +166,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         It should_not_throw_an_exception = () => exception.ShouldBeNull();
 
-        It should_allow_the_chaining_of_redirect_result_assertions = () => result.ShouldBeOfType<ActionResultAnd<RedirectResult>>();
+        It should_allow_the_chaining_of_redirect_result_assertions = () => result.ShouldBeAssignableTo<ActionResultAnd<RedirectResult>>();
     }
 
     [Subject(typeof(ActionResultExtensions))]
@@ -176,7 +176,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         Because of = () => exception = Catch.Exception(() => new ViewResult().ShouldBeARedirect());
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 
     [Subject(typeof(ActionResultExtensions), "Given an action redirects to another action on the same controller")]
@@ -224,7 +224,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         Because of = () => exception = Catch.Exception(() => redirectToRouteResult.ShouldRedirectToAction<HomeController>(x => x.Index()));
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 
     [Subject(typeof(ActionResultExtensions))]
@@ -240,7 +240,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         Because of = () => exception = Catch.Exception(() => redirectToRouteResult.ShouldRedirectToAction<HomeController>(x => x.Index()));
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 
     [Subject(typeof(ActionResultExtensions))]
@@ -250,7 +250,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         Because of = () => exception = Catch.Exception(() => new ViewResult().ShouldRedirectToAction<HomeController>(x => x.Index()));
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 
 

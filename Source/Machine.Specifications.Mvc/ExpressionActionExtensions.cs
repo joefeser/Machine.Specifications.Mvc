@@ -9,7 +9,7 @@ namespace Machine.Specifications.Mvc
         public static string GetMethodBodyName<TController>(this Expression<Action<TController>> action) where TController : Controller
         {
             action.ShouldNotBeNull();
-            action.Body.ShouldBeOfType<MethodCallExpression>();
+            action.Body.ShouldBeAssignableTo<MethodCallExpression>();
             return ((MethodCallExpression)action.Body).Method.Name;
         }
     }

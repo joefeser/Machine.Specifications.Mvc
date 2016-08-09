@@ -25,7 +25,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         Because of = () => exception = Catch.Exception(() => new HomeControllerNonStandard().RoutingName());
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 
     [Subject(typeof(ControllerExtensions))]
@@ -35,7 +35,7 @@ namespace Machine.Specifications.Mvc.Specs
 
         Because of = () => exception = Catch.Exception(() => new Controller().RoutingName());
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 
     internal class HomeControllerNonStandard : Controller

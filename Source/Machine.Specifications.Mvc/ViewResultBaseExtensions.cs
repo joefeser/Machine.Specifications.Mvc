@@ -20,7 +20,7 @@ namespace Machine.Specifications.Mvc
 
         public static ModelTypeAnd<T> ShouldHaveModelOfType<T>(this ViewResultBase viewResult)
         {
-            viewResult.ViewData.Model.ShouldBeOfType<T>();
+            viewResult.ViewData.Model.ShouldBeAssignableTo<T>();
             return new ModelTypeAnd<T>((T) viewResult.ViewData.Model);
         }
 

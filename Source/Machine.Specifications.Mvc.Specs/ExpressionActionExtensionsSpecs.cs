@@ -38,6 +38,6 @@ namespace Machine.Specifications.Mvc.Specs
 
         Because of = () => exception = Catch.Exception(() => action.GetMethodBodyName());
 
-        It should_throw_an_exception = () => exception.ShouldBeOfType<SpecificationException>();
+        It should_throw_an_exception = () => exception.ShouldBeAssignableTo<SpecificationException>();
     }
 }   
