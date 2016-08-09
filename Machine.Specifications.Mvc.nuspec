@@ -3,7 +3,7 @@
   <metadata>
     <id>Machine.Specifications.Mvc5</id>
     <title>Machine.Specifications.Mvc5</title>
-    <version>1.6.1.0</version>
+    <version>1.9.3.0</version>
     <authors>James Broome, Joe Feser</authors>
     <owners>James Broome</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -17,7 +17,7 @@ It aims to ease the testing of ActionResult objects returned from MVC Controller
     <releaseNotes>v1.6.1 added support for MVC5</releaseNotes>
     <projectUrl>https://github.com/joefeser/Machine.Specifications.Mvc</projectUrl>
     <dependencies>
-      <dependency id="Machine.Specifications" version="0.6.2" />
+      <dependency id="Machine.Specifications" version="0.9.3" />
     </dependencies>
     <iconUrl>http://github.com/machine/machine.specifications/raw/master/Misc/Machine.Specifications-32x32.png</iconUrl>
     <tags>MSpec test unit testing context specification bdd tdd</tags>
